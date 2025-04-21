@@ -1,0 +1,23 @@
+; For more information go to:
+; https://manual.gromacs.org/documentation/current/user-guide/mdp-options.html
+;
+;--Preprocessing----------
+define                   = -DFLEXIBLE
+;--Controls---------------
+integrator               = steep
+nsteps                   = 5000
+emtol                    = 1000 ;[kJ mol^-1] 
+emstep                   = 0.01 
+;--Nonbonded--------------
+cutoff-scheme            = verlet
+vdwtype                  = cutoff
+vdw-modifier             = force-switch
+rvdw                     = 1.2 ;[nm]
+rlist                    = 1.20
+rvdw-switch              = 1.0
+pme-order                = 4
+coulombtype              = pme
+rcoulomb                 = 1.2 ;[nm]
+DispCorr                 = no
+;--Boundary-conditions----
+pbc                      = xyz

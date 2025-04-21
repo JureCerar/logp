@@ -1,0 +1,31 @@
+; Include forcefield parameters
+#include "./charmm36.ff/forcefield.itp"
+
+; Include octanol topology
+#include "./topol/OCOH.itp"
+
+#ifdef POSRES_FB
+#include "posres.itp"
+#endif
+
+; Include protein topology
+#include "./topol/prot.itp"
+
+; Include water topology
+#include "./charmm36.ff/spce.itp"
+
+#ifdef POSRES_WATER
+[ position_restraints ]
+;  i funct       fcx        fcy        fcz
+   1    1       1000       1000       1000
+#endif
+
+; Include topology for ions
+#include "./charmm36.ff/ions.itp"
+
+[ system ]
+; Name
+Simulation
+
+[ molecules ]
+; Compound        #mols

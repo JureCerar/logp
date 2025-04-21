@@ -1,0 +1,49 @@
+; For more information go to:
+; https://manual.gromacs.org/documentation/current/user-guide/mdp-options.html
+;
+;--Preprocessing----------
+define                   = -DPOSRES_FB
+;--Controls---------------
+integrator               = md
+dt                       = 0.002 ;[ps]
+nsteps                   = 100000 ;= 0.2 ns
+;--Output-----------------
+nstenergy                = 10000
+nstxout-compressed       = 10000
+compressed-x-grps        = system
+;--Bonded-----------------
+continuation             = no
+constraint-algorithm     = lincs
+constraints              = h-bonds
+lincs-warnangle          = 90 ;[deg]
+lincs-iter               = 1
+lincs-order              = 4
+;--Nonbonded--------------
+cutoff-scheme            = verlet
+vdwtype                  = cutoff
+vdw-modifier             = force-switch
+rvdw                     = 1.2 ;[nm]
+rlist                    = 1.2
+rvdw-switch              = 1.0
+pme-order                = 4
+coulombtype              = pme
+rcoulomb                 = 1.2 ;[nm]
+DispCorr                 = no
+;--Temp-coupling----------
+tcoupl                   = v-rescale
+tc-grps                  = system
+tau-t                    = 0.1 ;[ps]
+ref-t                    = 300 ;[K]
+nh-chain-length          = 1
+;--Press-coupling---------
+pcoupl                   = c-rescale
+pcoupltype               = isotropic
+tau_p                    = 2.0 ;[ps]
+ref_p                    = 1.0 ;[bar]
+compressibility          = 4.46e-5 ;[1/bar]
+refcoord_scaling         = com
+;--Boundary-conditions----
+pbc                      = xyz
+;--Initialization---------
+gen-vel                  = yes
+gen-temp                 = 300 ;[K]	
